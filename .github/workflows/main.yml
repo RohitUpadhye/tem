@@ -6,8 +6,9 @@ on:
       - master
 
 permissions:
-  contents: read 
+  contents: read
   pages: write
+  id-token: write
 
 jobs:
   deploy:
@@ -17,13 +18,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup pages
+      - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload Artifacts
-        uses: actions/configure-pages@v3
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
-      - name: Deploy to Github Pages
-       uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
