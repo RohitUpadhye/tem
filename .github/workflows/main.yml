@@ -18,13 +18,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Login to Dockerhub login
+        uses: docker/login-action@v3
         with:
-          path: .
+          usernmae: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: rohitupadhye/myapp:latest
+          
+
+     
